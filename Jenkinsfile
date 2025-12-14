@@ -2,7 +2,11 @@ pipeline {
     agent {
         docker {
             image 'docker:26.1.4-cli'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
+            args '''
+              -u root
+              -v /var/run/docker.sock:/var/run/docker.sock
+              -e DOCKER_CONFIG=/tmp/.docker
+            '''
         }
     }
 
