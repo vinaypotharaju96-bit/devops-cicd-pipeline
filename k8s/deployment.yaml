@@ -1,6 +1,21 @@
-containers:
-  - name: flask-app
-    image: potharaju/flask-app:v4
-    imagePullPolicy: Always
-    ports:
-      - containerPort: 5000
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cicd-app
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cicd-app
+  template:
+    metadata:
+      labels:
+        app: cicd-app
+    spec:
+      containers:
+        - name: cicd-app
+          image: potharaju/flask-app:v4
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
