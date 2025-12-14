@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flask-app
-  labels:
-    app: flask-app
 spec:
   replicas: 1
   selector:
@@ -15,8 +13,8 @@ spec:
         app: flask-app
     spec:
       containers:
-        - name: flask
-          image: potharaju/flask-app:latest
+        - name: flask-app
+          image: potharaju/flask-app:v1
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
